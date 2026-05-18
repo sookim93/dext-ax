@@ -27,17 +27,17 @@ jobs:
       - name: Install dependencies
         run: pip install -r projects/bidding-mvp/requirements.txt
 
-      - name: Determine window (3 days morning / 1 day afternoon)
+      - name: Determine window (7 days morning / 1 day afternoon)
         id: window
         run: |
-          # UTC 00:00 = morning slot → DAYS_BACK=3
-          # UTC 06:00 = afternoon slot → DAYS_BACK=1
+          # UTC 00:00 = morning slot → DAYS_BACK=7 (캘린더 1주)
+          # UTC 06:00 = afternoon slot → DAYS_BACK=1 (당일만, 신규 없으면 skip)
           HOUR=$(date -u +%H)
           if [ "$HOUR" = "06" ]; then
             echo "DAYS_BACK=1" >> $GITHUB_OUTPUT
             echo "SLOT=afternoon" >> $GITHUB_OUTPUT
           else
-            echo "DAYS_BACK=3" >> $GITHUB_OUTPUT
+            echo "DAYS_BACK=7" >> $GITHUB_OUTPUT
             echo "SLOT=morning" >> $GITHUB_OUTPUT
           fi
 

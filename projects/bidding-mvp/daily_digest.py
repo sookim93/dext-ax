@@ -58,7 +58,7 @@ INCLUDE_KEYWORDS = ["논술", "실기", "입학", "입시", "전자채점", "전
 EXCLUDE_KEYWORDS = ["병원", "건설", "건축", "공사", "디자인", "홍보", "모집요강", "인쇄업체"]
 BUDGET_MIN = 1_000_000          # 1M
 BUDGET_MAX = 1_000_000_000      # 10억 (확대 — 큰 사업 누락 방지)
-DAYS_BACK = int(os.getenv("DAYS_BACK", "3"))  # 오전 cron=3, 오후 cron=1
+DAYS_BACK = int(os.getenv("DAYS_BACK", "7"))  # 캘린더 일수. 오전 cron=7 (1주), 오후 cron=1 (당일)
 
 SMTP_HOST = os.getenv("SMTP_HOST", "smtp.daum.net")  # 운영(GitHub Actions)에선 smtp.gmail.com
 SMTP_PORT = int(os.getenv("SMTP_PORT", "465"))       # 465 = SSL
@@ -201,10 +201,13 @@ def passes_filter(n: Dict) -> bool:
     haystack = (name + " " + inst).lower()
 
     # age — PubDataOpnStdService가 inqryBgnDt 서버 필터를 무시하므로 클라이언트에서
-    # notice_date 기준 cutoff 적용. **영업일 기준** (월요일 cron이 직전 금/목 잡도록).
+    # notice_date 기준 cutoff 적용. **캘린더 일수 기준** (주말·공휴일 등록 공고도 잡음).
+    # DAYS_BACK=7 → 직전 7일 안 등록 공고 다. 같은 공고가 메일에 최대 7번 노출 가능
+    # (Phase 1은 state-free라 reminder 역할). Phase 2 lifecycle 도입 시 결정완료 건은 자동 hide.
     nd = n.get("notice_date")
     if isinstance(nd, datetime):
-        if nd.date() < _oldest_business_day(DAYS_BACK):
+        cutoff = datetime.now().date() - timedelta(days=DAYS_BACK - 1)
+        if nd.date() < cutoff:
             return False
 
     # exclude — 한 마디라도 걸리면 drop
@@ -230,24 +233,6 @@ def passes_filter(n: Dict) -> bool:
         return False
 
     return True
-
-
-def _oldest_business_day(business_days_back: int):
-    """오늘 포함, N 영업일 거꾸로 셌을 때 가장 오래된 날짜.
-    DAYS_BACK=1 → 오늘만 (오늘이 평일이면 오늘, 주말이면 직전 평일)
-    DAYS_BACK=3 → 오늘 + 직전 2 영업일. 월요일이면 → 금요일.
-    """
-    if business_days_back <= 0:
-        return datetime.now().date()
-    d = datetime.now().date()
-    biz_left = business_days_back
-    if d.weekday() < 5:
-        biz_left -= 1
-    while biz_left > 0:
-        d -= timedelta(days=1)
-        if d.weekday() < 5:
-            biz_left -= 1
-    return d
 
 
 def split_notices(notices: List[Dict]) -> Tuple[List[Dict], List[Dict]]:
@@ -451,7 +436,7 @@ def render_digest(new_list: List[Dict], repost_list: List[Dict], stats: Optional
       <body style="font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo',sans-serif;color:#222;max-width:780px;margin:0 auto;">
         <h2 style="margin:0 0 8px;">📋 오늘의 입찰공고 다이제스트 ({total}건)</h2>
         <p style="color:#666;margin:0 0 12px;font-size:13px;">
-          발송 시각: {datetime.now().strftime('%Y-%m-%d %H:%M')} · 검색 범위: 최근 {DAYS_BACK} 영업일 (≥ {_oldest_business_day(DAYS_BACK).strftime('%Y-%m-%d')})
+          발송 시각: {datetime.now().strftime('%Y-%m-%d %H:%M')} · 검색 범위: 최근 {DAYS_BACK}일 (≥ {(datetime.now().date() - timedelta(days=DAYS_BACK - 1)).strftime('%Y-%m-%d')})
         </p>
         {_render_filter_chips()}
         <p style="color:#888;margin:0 0 16px;font-size:12px;">
