@@ -44,6 +44,8 @@ jobs:
       - name: Run digest (${{ steps.window.outputs.SLOT }} — last ${{ steps.window.outputs.DAYS_BACK }}d)
         env:
           G2B_API_KEY: ${{ secrets.G2B_API_KEY }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
           SMTP_USER: ${{ secrets.SMTP_USER }}
           SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
           EMAIL_SENDER_NAME: 덱스트 입찰공고 봇

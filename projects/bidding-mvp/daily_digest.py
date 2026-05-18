@@ -60,8 +60,8 @@ BUDGET_MIN = 1_000_000          # 1M
 BUDGET_MAX = 500_000_000        # 500M
 DAYS_BACK = int(os.getenv("DAYS_BACK", "3"))  # 오전 cron=3, 오후 cron=1
 
-DAUM_SMTP_HOST = "smtp.daum.net"
-DAUM_SMTP_PORT = 465
+SMTP_HOST = os.getenv("SMTP_HOST", "smtp.daum.net")  # 운영(GitHub Actions)에선 smtp.gmail.com
+SMTP_PORT = int(os.getenv("SMTP_PORT", "465"))       # 465 = SSL
 G2B_BASE = "https://apis.data.go.kr/1230000/ao/PubDataOpnStdService"
 DATE_FMT = "%Y%m%d%H%M"
 ROWS_PER_PAGE = 100
@@ -464,7 +464,7 @@ def send_mail(subject: str, html_body: str, recipients: List[str]) -> bool:
         try:
             ctx = ssl.create_default_context()
             with smtplib.SMTP_SSL(
-                DAUM_SMTP_HOST, DAUM_SMTP_PORT,
+                SMTP_HOST, SMTP_PORT,
                 context=ctx, timeout=60,
             ) as smtp:
                 smtp.login(SMTP_USER, SMTP_PASSWORD)
