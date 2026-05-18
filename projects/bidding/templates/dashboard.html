@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block title %}입찰공고 대시보드{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-radar" aria-hidden="true">
+        <div class="radar-ring radar-ring-1"></div>
+        <div class="radar-ring radar-ring-2"></div>
+        <div class="radar-ring radar-ring-3"></div>
+        <div class="radar-sweep"></div>
+        <div class="radar-blip radar-blip-1"></div>
+        <div class="radar-blip radar-blip-2"></div>
+        <div class="radar-blip radar-blip-3"></div>
+        <div class="radar-blip radar-blip-4"></div>
+        <div class="radar-core">
+            <span class="radar-core-label">LIVE</span>
+        </div>
+    </div>
+    <h1 class="hero-title">입찰공고 라이프사이클 모니터</h1>
+    <p class="hero-sub">발견 → 결정 → 제출 → 재공고 추적까지 자동 거버넌스 · 다음 sync {{ next_sync_time }}</p>
+    <div class="hero-stats">
+        <div class="hero-stat hero-stat-total">
+            <div class="hero-stat-num">{{ hero_stats.total }}</div>
+            <div class="hero-stat-label">전체</div>
+        </div>
+        <a class="hero-stat hero-stat-pending" href="#section-DISCOVERED" style="text-decoration:none;color:inherit;">
+            <div class="hero-stat-num">{{ hero_stats.pending }}</div>
+            <div class="hero-stat-label">미결정</div>
+        </a>
+        <div class="hero-stat hero-stat-urgent {% if hero_stats.urgent %}is-active{% endif %}">
+            <div class="hero-stat-num">{{ hero_stats.urgent }}</div>
+            <div class="hero-stat-label">D-3 이내</div>
+        </div>
+        <div class="hero-stat hero-stat-dday {% if hero_stats.dday %}is-active{% endif %}">
+            <div class="hero-stat-num">{{ hero_stats.dday }}</div>
+            <div class="hero-stat-label">오늘 마감</div>
+        </div>
+        <div class="hero-stat hero-stat-expired {% if hero_stats.expired %}is-active{% endif %}">
+            <div class="hero-stat-num">{{ hero_stats.expired }}</div>
+            <div class="hero-stat-label">마감 누락</div>
+        </div>
+    </div>
+</section>
+
+<div class="lifecycle-board">
+    {# Active sections — 행동 필요 #}
+    {% for section in sections if section.tier == "active" or section.tier == "fail" %}
+        <details
+            id="section-{{ section.state }}"
+            class="lc-section lc-section-{{ section.state|lower }}"
+            {% if section.default_open %}open{% endif %}
+        >
+            <summary class="lc-summary">
+                <span class="lc-label">{{ section.label }}</span>
+                <span class="lc-count">{{ section.count }}건</span>
+            </summary>
+            {% if section.notices %}
+                <div class="lc-items">
+                    {% for n in section.notices %}
+                        {% include "_lc_item.html" %}
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="lc-empty">없음</div>
+            {% endif %}
+        </details>
+    {% endfor %}
+
+    {# Terminal sections — 기록/완료. Muted, default closed #}
+    {% set terminal_total = sections | selectattr("tier", "equalto", "terminal") | map(attribute="count") | sum %}
+    {% if terminal_total > 0 %}
+        <div class="lc-divider">처리 완료 / 기록</div>
+        {% for section in sections if section.tier == "terminal" %}
+            <details
+                id="section-{{ section.state }}"
+                class="lc-section lc-section-terminal lc-section-{{ section.state|lower }}"
+            >
+                <summary class="lc-summary">
+                    <span class="lc-label">{{ section.label }}</span>
+                    <span class="lc-count">{{ section.count }}건</span>
+                </summary>
+                {% if section.notices %}
+                    <div class="lc-items">
+                        {% for n in section.notices %}
+                            {% include "_lc_item.html" %}
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="lc-empty">없음</div>
+                {% endif %}
+            </details>
+        {% endfor %}
+    {% endif %}
+</div>
+{% endblock %}

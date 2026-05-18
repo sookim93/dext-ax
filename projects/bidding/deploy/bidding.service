@@ -1,0 +1,17 @@
+[Unit]
+Description=Dext bidding notice lifecycle governance (FastAPI)
+After=network.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/opt/bidding
+EnvironmentFile=/opt/bidding/.env
+ExecStart=/opt/bidding/.venv/bin/python /opt/bidding/app.py
+Restart=on-failure
+RestartSec=5
+StandardOutput=append:/var/log/bidding.log
+StandardError=append:/var/log/bidding.log
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}결정 결과{% endblock %}
+
+{% block content %}
+<div class="decide-page">
+    {% if status == "ok" %}
+        <div class="decide-card decide-ok">
+            <div class="decide-icon">✅</div>
+            <h2>결정 저장 완료</h2>
+            <p class="decide-message">{{ message }}</p>
+            {% if notice %}
+                <div class="decide-details">
+                    <div class="decide-row"><span class="decide-label">공고</span><span>{{ notice.bid_notice_name }}</span></div>
+                    <div class="decide-row"><span class="decide-label">발주기관</span><span>{{ notice.institution_name }}</span></div>
+                    <div class="decide-row"><span class="decide-label">새 상태</span><span class="decide-state">{{ notice.lifecycle_state.value if notice.lifecycle_state else 'DISCOVERED' }}</span></div>
+                </div>
+            {% endif %}
+        </div>
+    {% elif status == "already_done" %}
+        <div class="decide-card decide-info">
+            <div class="decide-icon">ℹ️</div>
+            <h2>이미 처리된 결정</h2>
+            <p class="decide-message">{{ message }}</p>
+            {% if notice %}
+                <div class="decide-details">
+                    <div class="decide-row"><span class="decide-label">공고</span><span>{{ notice.bid_notice_name }}</span></div>
+                    <div class="decide-row"><span class="decide-label">현재 상태</span><span class="decide-state">{{ notice.lifecycle_state.value if notice.lifecycle_state else 'DISCOVERED' }}</span></div>
+                </div>
+            {% endif %}
+        </div>
+    {% elif status == "invalid_transition" %}
+        <div class="decide-card decide-warn">
+            <div class="decide-icon">⚠️</div>
+            <h2>현재 상태에서는 처리 불가</h2>
+            <p class="decide-message">{{ message }}</p>
+            {% if notice %}
+                <div class="decide-details">
+                    <div class="decide-row"><span class="decide-label">공고</span><span>{{ notice.bid_notice_name }}</span></div>
+                    <div class="decide-row"><span class="decide-label">현재 상태</span><span class="decide-state">{{ notice.lifecycle_state.value if notice.lifecycle_state else 'DISCOVERED' }}</span></div>
+                </div>
+            {% endif %}
+        </div>
+    {% else %}
+        <div class="decide-card decide-error">
+            <div class="decide-icon">❌</div>
+            <h2>처리 실패</h2>
+            <p class="decide-message">{{ message }}</p>
+        </div>
+    {% endif %}
+
+    <div class="decide-actions">
+        <a href="/" class="btn btn-back">대시보드로 이동</a>
+    </div>
+</div>
+{% endblock %}

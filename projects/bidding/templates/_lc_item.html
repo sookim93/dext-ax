@@ -1,0 +1,52 @@
+<div class="lc-item" data-notice-id="{{ n.id }}">
+    <div class="lc-item-main">
+        <a class="lc-item-name" href="{{ n.url }}" target="_blank" rel="noopener">
+            {{ n.bid_notice_name[:80] }}{% if n.bid_notice_name|length > 80 %}…{% endif %}
+        </a>
+        {% if n.ref_notice_no %}
+            <span class="lc-item-ref">원공고: {{ n.ref_notice_no }}</span>
+        {% endif %}
+        <div class="lc-item-meta">
+            <span class="lc-meta-inst">{{ n.institution_name }}</span>
+            {% if n.bid_amount_max %}
+                <span class="lc-meta-amount">{{ "{:,.0f}".format(n.bid_amount_max) }}원</span>
+            {% endif %}
+            {% if n.bid_close_date %}
+                <span class="lc-meta-close">{{ n.bid_close_date.strftime('%m-%d %H:%M') }}</span>
+            {% endif %}
+            {% if n.days_left is not none %}
+                {% if n.days_left < 0 %}
+                    <span class="dday-badge dday-past">마감</span>
+                {% elif n.days_left == 0 %}
+                    <span class="dday-badge dday-today">D-DAY</span>
+                {% elif n.days_left <= 3 %}
+                    <span class="dday-badge dday-urgent">D-{{ n.days_left }}</span>
+                {% elif n.days_left <= 7 %}
+                    <span class="dday-badge dday-soon">D-{{ n.days_left }}</span>
+                {% else %}
+                    <span class="dday-badge dday-far">D-{{ n.days_left }}</span>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+    <div class="lc-item-actions">
+        {% if n.tokens.get('participate') %}
+            <a class="btn btn-participate" href="/decide/{{ n.id }}/participate/{{ n.tokens['participate'] }}">참여</a>
+        {% endif %}
+        {% if n.tokens.get('pass') %}
+            <a class="btn btn-pass" href="/decide/{{ n.id }}/pass/{{ n.tokens['pass'] }}">패스</a>
+        {% endif %}
+        {% if n.tokens.get('submitted') %}
+            <a class="btn btn-submit" href="/decide/{{ n.id }}/submitted/{{ n.tokens['submitted'] }}">제출완료</a>
+        {% endif %}
+        {% if n.tokens.get('resubmitted') %}
+            <a class="btn btn-resubmit" href="/decide/{{ n.id }}/resubmitted/{{ n.tokens['resubmitted'] }}">재제출 완료</a>
+        {% endif %}
+        {% if n.can_undo %}
+            <form method="POST" action="/decide/{{ n.id }}/undo" class="undo-form"
+                  onsubmit="return confirm('이 공고의 결정을 되돌리시겠어요? ({{ n.lifecycle_state }} → {{ n.undo_target }})');">
+                <button class="btn-undo" type="submit">↩ 되돌리기</button>
+            </form>
+        {% endif %}
+    </div>
+</div>

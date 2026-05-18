@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}덱스트 입찰공고 대시보드{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="navbar-title">덱스트 입찰공고 대시보드</h1>
+            <div class="navbar-actions">
+                <button class="btn btn-sync" onclick="syncNotices()">동기화</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container main-content">
+        {% block content %}{% endblock %}
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 덱스트 자동화 프로젝트 | 입찰공고 필터링 시스템</p>
+    </footer>
+
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
