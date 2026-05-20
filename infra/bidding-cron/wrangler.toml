@@ -1,0 +1,11 @@
+name = "bidding-cron"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+account_id = "a494f403ad97e7173fc225b7b4f9ab31"
+workers_dev = false
+
+[triggers]
+crons = [
+  "5 0 * * 1-5",  # KST 09:05 (평일) — 7일치 다이제스트
+  "5 6 * * 1-5",  # KST 15:05 (평일) — 당일 신규
+]
