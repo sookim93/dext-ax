@@ -1,0 +1,154 @@
+<h2>대시보드 UI 레이아웃 — 어느 구조가 맞나요?</h2>
+<p class="subtitle">같은 기능, 다른 레이아웃 2가지</p>
+
+<div class="split">
+  <div class="mockup">
+    <div class="mockup-header">A · 사이드바 + 카드 그리드</div>
+    <div class="mockup-body" style="padding:0;">
+      <div style="display:flex; height:320px; font-size:12px;">
+        <!-- Sidebar -->
+        <div style="width:140px; background:rgba(0,0,0,0.3); padding:10px; border-right:1px solid rgba(255,255,255,0.08); overflow:auto; flex-shrink:0;">
+          <div style="margin-bottom:8px; opacity:0.5; font-size:10px; text-transform:uppercase; letter-spacing:1px;">플랫폼</div>
+          <div style="padding:5px 8px; background:rgba(99,102,241,0.3); border-radius:4px; margin-bottom:3px;">● Claude</div>
+          <div style="padding:5px 8px; border-radius:4px; margin-bottom:3px; opacity:0.6;">● ChatGPT</div>
+          <div style="padding:5px 8px; border-radius:4px; margin-bottom:12px; opacity:0.6;">● 전체</div>
+          <div style="margin-bottom:8px; opacity:0.5; font-size:10px; text-transform:uppercase; letter-spacing:1px;">카테고리</div>
+          <div style="padding:5px 8px; border-radius:4px; margin-bottom:3px; opacity:0.6;">생산성</div>
+          <div style="padding:5px 8px; background:rgba(99,102,241,0.3); border-radius:4px; margin-bottom:3px;">콘텐츠 제작</div>
+          <div style="padding:5px 8px; border-radius:4px; margin-bottom:3px; opacity:0.6;">비즈니스</div>
+          <div style="padding:5px 8px; border-radius:4px; margin-bottom:3px; opacity:0.6;">코딩/기술</div>
+          <div style="padding:5px 8px; border-radius:4px; margin-bottom:3px; opacity:0.6;">AI 추론</div>
+          <div style="padding:5px 8px; border-radius:4px; margin-bottom:3px; opacity:0.6;">실행 모드</div>
+          <div style="padding:5px 8px; border-radius:4px; margin-bottom:3px; opacity:0.6;">커리어</div>
+          <div style="padding:5px 8px; border-radius:4px; margin-bottom:3px; opacity:0.6;">학습</div>
+        </div>
+        <!-- Main content -->
+        <div style="flex:1; padding:10px; overflow:auto;">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+            <div style="background:rgba(255,255,255,0.05); border-radius:6px; padding:10px; border:1px solid rgba(255,255,255,0.08);">
+              <div style="display:flex; justify-content:space-between; align-items:start;">
+                <span style="font-weight:600;">/ideas</span>
+                <span style="font-size:10px; opacity:0.4;">★</span>
+              </div>
+              <div style="font-size:11px; opacity:0.6; margin:4px 0;">콘텐츠 아이디어 생성</div>
+              <div style="display:flex; gap:4px; margin-top:6px;">
+                <span style="font-size:10px; padding:2px 6px; background:rgba(99,102,241,0.25); border-radius:3px;">Claude</span>
+                <span style="font-size:10px; padding:2px 6px; background:rgba(16,185,129,0.25); border-radius:3px;">GPT</span>
+              </div>
+              <button style="margin-top:8px; width:100%; padding:4px; background:rgba(255,255,255,0.08); border:none; border-radius:4px; color:white; font-size:11px; cursor:pointer;">복사</button>
+            </div>
+            <div style="background:rgba(255,255,255,0.05); border-radius:6px; padding:10px; border:1px solid rgba(255,255,255,0.08);">
+              <div style="display:flex; justify-content:space-between;">
+                <span style="font-weight:600;">/hooks</span>
+                <span style="font-size:10px; color:#f59e0b;">★</span>
+              </div>
+              <div style="font-size:11px; opacity:0.6; margin:4px 0;">바이럴 후킹 문구</div>
+              <div style="display:flex; gap:4px; margin-top:6px;">
+                <span style="font-size:10px; padding:2px 6px; background:rgba(99,102,241,0.25); border-radius:3px;">Claude</span>
+              </div>
+              <button style="margin-top:8px; width:100%; padding:4px; background:rgba(255,255,255,0.08); border:none; border-radius:4px; color:white; font-size:11px; cursor:pointer;">복사</button>
+            </div>
+            <div style="background:rgba(255,255,255,0.05); border-radius:6px; padding:10px; border:1px solid rgba(255,255,255,0.08);">
+              <div style="display:flex; justify-content:space-between;">
+                <span style="font-weight:600;">/scripts</span>
+                <span style="font-size:10px; opacity:0.4;">★</span>
+              </div>
+              <div style="font-size:11px; opacity:0.6; margin:4px 0;">전체 스크립트 작성</div>
+              <div style="display:flex; gap:4px; margin-top:6px;">
+                <span style="font-size:10px; padding:2px 6px; background:rgba(99,102,241,0.25); border-radius:3px;">Claude</span>
+                <span style="font-size:10px; padding:2px 6px; background:rgba(16,185,129,0.25); border-radius:3px;">GPT</span>
+              </div>
+              <button style="margin-top:8px; width:100%; padding:4px; background:rgba(255,255,255,0.08); border:none; border-radius:4px; color:white; font-size:11px; cursor:pointer;">복사</button>
+            </div>
+            <div style="background:rgba(255,255,255,0.05); border-radius:6px; padding:10px; border:1px solid rgba(255,255,255,0.08);">
+              <div style="display:flex; justify-content:space-between;">
+                <span style="font-weight:600;">/captions</span>
+                <span style="font-size:10px; opacity:0.4;">★</span>
+              </div>
+              <div style="font-size:11px; opacity:0.6; margin:4px 0;">캡션 작성</div>
+              <div style="display:flex; gap:4px; margin-top:6px;">
+                <span style="font-size:10px; padding:2px 6px; background:rgba(16,185,129,0.25); border-radius:3px;">GPT</span>
+              </div>
+              <button style="margin-top:8px; width:100%; padding:4px; background:rgba(255,255,255,0.08); border:none; border-radius:4px; color:white; font-size:11px; cursor:pointer;">복사</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mockup">
+    <div class="mockup-header">B · 탭 + 리스트 뷰</div>
+    <div class="mockup-body" style="padding:0;">
+      <div style="height:320px; font-size:12px; display:flex; flex-direction:column;">
+        <!-- Platform tabs -->
+        <div style="display:flex; gap:0; border-bottom:1px solid rgba(255,255,255,0.1);">
+          <div style="padding:8px 16px; background:rgba(99,102,241,0.2); border-bottom:2px solid #6366f1; font-size:12px;">전체</div>
+          <div style="padding:8px 16px; opacity:0.5; font-size:12px;">Claude</div>
+          <div style="padding:8px 16px; opacity:0.5; font-size:12px;">ChatGPT</div>
+          <div style="margin-left:auto; padding:8px 12px; opacity:0.5; font-size:11px;">⭐ 즐겨찾기만</div>
+        </div>
+        <!-- Category chips -->
+        <div style="padding:8px 10px; display:flex; gap:6px; flex-wrap:wrap; border-bottom:1px solid rgba(255,255,255,0.06);">
+          <span style="padding:3px 10px; background:rgba(99,102,241,0.3); border-radius:12px; font-size:11px;">전체</span>
+          <span style="padding:3px 10px; background:rgba(255,255,255,0.08); border-radius:12px; font-size:11px;">생산성</span>
+          <span style="padding:3px 10px; background:rgba(255,255,255,0.08); border-radius:12px; font-size:11px;">콘텐츠</span>
+          <span style="padding:3px 10px; background:rgba(255,255,255,0.08); border-radius:12px; font-size:11px;">비즈니스</span>
+          <span style="padding:3px 10px; background:rgba(255,255,255,0.08); border-radius:12px; font-size:11px;">코딩</span>
+          <span style="padding:3px 10px; background:rgba(255,255,255,0.08); border-radius:12px; font-size:11px;">AI 추론</span>
+        </div>
+        <!-- List items -->
+        <div style="flex:1; overflow:auto; padding:4px 0;">
+          <div style="display:flex; align-items:center; padding:10px 12px; border-bottom:1px solid rgba(255,255,255,0.05); gap:10px;">
+            <span style="font-weight:600; width:90px; flex-shrink:0;">/ideas</span>
+            <span style="flex:1; opacity:0.6; font-size:11px;">콘텐츠 아이디어 생성</span>
+            <span style="font-size:10px; padding:2px 6px; background:rgba(99,102,241,0.25); border-radius:3px; flex-shrink:0;">Claude</span>
+            <span style="font-size:10px; padding:2px 6px; background:rgba(16,185,129,0.25); border-radius:3px; flex-shrink:0;">GPT</span>
+            <span style="opacity:0.3; flex-shrink:0;">★</span>
+            <button style="padding:3px 10px; background:rgba(255,255,255,0.1); border:none; border-radius:4px; color:white; font-size:10px; cursor:pointer; flex-shrink:0;">복사</button>
+          </div>
+          <div style="display:flex; align-items:center; padding:10px 12px; border-bottom:1px solid rgba(255,255,255,0.05); gap:10px; background:rgba(99,102,241,0.06);">
+            <span style="font-weight:600; width:90px; flex-shrink:0;">/hooks</span>
+            <span style="flex:1; opacity:0.6; font-size:11px;">바이럴 후킹 문구</span>
+            <span style="font-size:10px; padding:2px 6px; background:rgba(99,102,241,0.25); border-radius:3px; flex-shrink:0;">Claude</span>
+            <span style="color:#f59e0b; flex-shrink:0;">★</span>
+            <button style="padding:3px 10px; background:rgba(255,255,255,0.1); border:none; border-radius:4px; color:white; font-size:10px; cursor:pointer; flex-shrink:0;">복사</button>
+          </div>
+          <div style="display:flex; align-items:center; padding:10px 12px; border-bottom:1px solid rgba(255,255,255,0.05); gap:10px;">
+            <span style="font-weight:600; width:90px; flex-shrink:0;">/scripts</span>
+            <span style="flex:1; opacity:0.6; font-size:11px;">전체 스크립트 작성</span>
+            <span style="font-size:10px; padding:2px 6px; background:rgba(99,102,241,0.25); border-radius:3px; flex-shrink:0;">Claude</span>
+            <span style="font-size:10px; padding:2px 6px; background:rgba(16,185,129,0.25); border-radius:3px; flex-shrink:0;">GPT</span>
+            <span style="opacity:0.3; flex-shrink:0;">★</span>
+            <button style="padding:3px 10px; background:rgba(255,255,255,0.1); border:none; border-radius:4px; color:white; font-size:10px; cursor:pointer; flex-shrink:0;">복사</button>
+          </div>
+          <div style="display:flex; align-items:center; padding:10px 12px; border-bottom:1px solid rgba(255,255,255,0.05); gap:10px;">
+            <span style="font-weight:600; width:90px; flex-shrink:0;">/godmode</span>
+            <span style="flex:1; opacity:0.6; font-size:11px;">직설적인 가장 날것의 대답</span>
+            <span style="font-size:10px; padding:2px 6px; background:rgba(99,102,241,0.25); border-radius:3px; flex-shrink:0;">Claude</span>
+            <span style="font-size:10px; padding:2px 6px; background:rgba(16,185,129,0.25); border-radius:3px; flex-shrink:0;">GPT</span>
+            <span style="opacity:0.3; flex-shrink:0;">★</span>
+            <button style="padding:3px 10px; background:rgba(255,255,255,0.1); border:none; border-radius:4px; color:white; font-size:10px; cursor:pointer; flex-shrink:0;">복사</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="options" style="margin-top:20px;">
+  <div class="option" data-choice="layout-a" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>사이드바 + 카드 그리드</h3>
+      <p>시각적 · 탐색 중심 · 스킬 수가 많을 때 좋음</p>
+    </div>
+  </div>
+  <div class="option" data-choice="layout-b" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>탭 + 리스트 뷰</h3>
+      <p>정보 밀도 높음 · 빠른 스캔 · 검색 친화적</p>
+    </div>
+  </div>
+</div>

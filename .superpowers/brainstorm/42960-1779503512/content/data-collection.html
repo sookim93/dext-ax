@@ -1,0 +1,45 @@
+<h2>스킬 데이터 수집 방식</h2>
+<p class="subtitle">어떻게 Claude / ChatGPT 스킬을 모을까요?</p>
+
+<div class="options">
+  <div class="option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>수동 큐레이션</h3>
+      <p>제공해주신 리스트 + 직접 발견한 스킬을 JSON에 추가</p>
+      <p style="color:rgba(255,255,255,0.6); font-size:13px;">품질 높음 · 즉시 시작 가능 · 업데이트는 수작업</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="b" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>공식 문서 + 커뮤니티 자동 수집</h3>
+      <p>Anthropic 문서, OpenAI 문서, GitHub Awesome 리스트 크롤링</p>
+      <p style="color:rgba(255,255,255,0.6); font-size:13px;">범위 넓음 · 노이즈 있음 · 파싱 로직 필요</p>
+      <div style="margin-top:8px; font-size:13px; color:rgba(255,255,255,0.5);">
+        예: awesome-chatgpt-prompts, awesome-claude-prompts, 각 공식 docs
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="c" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>수동 큐레이션으로 시작 + 나중에 자동 수집 추가</h3>
+      <p>지금은 제공 리스트로 빠르게 v1 완성 → 이후 크롤러 붙이기</p>
+      <p style="color:rgba(255,255,255,0.6); font-size:13px;">현실적 · 구조만 잘 잡으면 확장 쉬움</p>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="margin-top:20px; padding:14px; background:rgba(255,255,255,0.04); border-radius:8px;">
+  <p class="label">수집 대상 AI 플랫폼</p>
+  <div style="display:flex; gap:12px; margin-top:10px; flex-wrap:wrap;">
+    <span style="padding:6px 14px; background:rgba(99,102,241,0.2); border-radius:20px; font-size:13px;">Claude (Anthropic)</span>
+    <span style="padding:6px 14px; background:rgba(16,185,129,0.2); border-radius:20px; font-size:13px;">ChatGPT (OpenAI)</span>
+    <span style="padding:6px 14px; background:rgba(245,158,11,0.2); border-radius:20px; font-size:13px;">Gemini (Google)</span>
+    <span style="padding:6px 14px; background:rgba(255,255,255,0.08); border-radius:20px; font-size:13px;">Grok (xAI)?</span>
+    <span style="padding:6px 14px; background:rgba(255,255,255,0.08); border-radius:20px; font-size:13px;">Perplexity?</span>
+  </div>
+</div>

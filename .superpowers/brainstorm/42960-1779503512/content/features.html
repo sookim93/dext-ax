@@ -1,0 +1,52 @@
+<h2>대시보드 핵심 기능 선택</h2>
+<p class="subtitle">어떤 기능이 꼭 필요한가요? 여러 개 선택 가능</p>
+
+<div class="options" data-multiselect>
+  <div class="option" data-choice="search" onclick="toggleSelect(this)">
+    <div class="letter">1</div>
+    <div class="content">
+      <h3>검색</h3>
+      <p>스킬 이름 / 설명으로 빠른 검색</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="platform-filter" onclick="toggleSelect(this)">
+    <div class="letter">2</div>
+    <div class="content">
+      <h3>AI 플랫폼 필터</h3>
+      <p>Claude / ChatGPT / Gemini 별로 필터링</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="category-filter" onclick="toggleSelect(this)">
+    <div class="letter">3</div>
+    <div class="content">
+      <h3>카테고리 탐색</h3>
+      <p>생산성 / 콘텐츠 / 코딩 등 카테고리 사이드바</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="copy" onclick="toggleSelect(this)">
+    <div class="letter">4</div>
+    <div class="content">
+      <h3>원클릭 복사</h3>
+      <p>스킬 클릭 시 프롬프트 전체 클립보드 복사</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="platform-badge" onclick="toggleSelect(this)">
+    <div class="letter">5</div>
+    <div class="content">
+      <h3>플랫폼 호환 뱃지</h3>
+      <p>각 스킬이 어느 AI에서 동작하는지 표시 <span style="opacity:0.5">[Claude] [GPT] [Gemini]</span></p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="favorite" onclick="toggleSelect(this)">
+    <div class="letter">6</div>
+    <div class="content">
+      <h3>즐겨찾기</h3>
+      <p>자주 쓰는 스킬 북마크 (localStorage 저장)</p>
+    </div>
+  </div>
+</div>

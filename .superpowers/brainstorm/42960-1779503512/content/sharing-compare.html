@@ -1,0 +1,59 @@
+<h2>A vs B — 공유 시나리오 비교</h2>
+<p class="subtitle">"공유"가 어떤 의미냐에 따라 답이 갈립니다</p>
+
+<div class="split">
+  <div class="mockup">
+    <div class="mockup-header">A · 정적 웹앱 (GitHub Pages)</div>
+    <div class="mockup-body">
+      <p class="label" style="color:#6366f1">링크 공유</p>
+      <p style="font-size:14px; margin:8px 0;">→ <strong>zarvis-skills.github.io</strong> 같은 공개 URL</p>
+      <p style="font-size:14px;">누구나 로그인 없이 열람 가능</p>
+      <hr style="border-color:rgba(255,255,255,0.1); margin:12px 0;">
+      <p class="label" style="color:#f59e0b">스킬 추가/수정</p>
+      <p style="font-size:14px; margin:8px 0;">→ GitHub PR or JSON 파일 직접 수정</p>
+      <p style="font-size:14px; color:rgba(255,255,255,0.5);">개발자 친화적, 비개발자엔 불편</p>
+      <hr style="border-color:rgba(255,255,255,0.1); margin:12px 0;">
+      <p class="label" style="color:#10b981">추천 상황</p>
+      <p style="font-size:14px; margin:8px 0;">혼자 관리하거나 개발자끼리 쓸 때</p>
+    </div>
+  </div>
+  <div class="mockup">
+    <div class="mockup-header">B · Notion DB + 웹 대시보드</div>
+    <div class="mockup-body">
+      <p class="label" style="color:#6366f1">링크 공유</p>
+      <p style="font-size:14px; margin:8px 0;">→ 대시보드 URL 공유 (공개 가능)</p>
+      <p style="font-size:14px;">Notion 공유 설정에 따라 열람 범위 조절</p>
+      <hr style="border-color:rgba(255,255,255,0.1); margin:12px 0;">
+      <p class="label" style="color:#f59e0b">스킬 추가/수정</p>
+      <p style="font-size:14px; margin:8px 0;">→ Notion 페이지에서 직접 추가</p>
+      <p style="font-size:14px; color:rgba(255,255,255,0.5);">비개발자도 즉시 기여 가능</p>
+      <hr style="border-color:rgba(255,255,255,0.1); margin:12px 0;">
+      <p class="label" style="color:#10b981">추천 상황</p>
+      <p style="font-size:14px; margin:8px 0;">팀원이 직접 스킬을 추가·수정할 때</p>
+    </div>
+  </div>
+</div>
+
+<div class="options" style="margin-top:20px;">
+  <div class="option" data-choice="q1" onclick="toggleSelect(this)">
+    <div class="letter">→</div>
+    <div class="content">
+      <h3>나 혼자 (또는 개발자끼리) 관리 · 누구나 볼 수 있게 공개</h3>
+      <p>A 추천 — GitHub Pages로 퍼블릭 URL, 관리는 내가</p>
+    </div>
+  </div>
+  <div class="option" data-choice="q2" onclick="toggleSelect(this)">
+    <div class="letter">→</div>
+    <div class="content">
+      <h3>팀원들도 스킬을 직접 추가·수정하게 하고 싶다</h3>
+      <p>B 추천 — Notion에서 편집, 대시보드로 열람</p>
+    </div>
+  </div>
+  <div class="option" data-choice="q3" onclick="toggleSelect(this)">
+    <div class="letter">→</div>
+    <div class="content">
+      <h3>공개 URL + 나만 관리 + 나중에 기여 기능 추가 가능성</h3>
+      <p>A로 시작 → 필요시 B나 C로 마이그레이션</p>
+    </div>
+  </div>
+</div>

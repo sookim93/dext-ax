@@ -1,0 +1,64 @@
+<h2>Zarvis 스킬 대시보드 — 전체 파이프라인 접근 방식</h2>
+<p class="subtitle">3가지 아키텍처 중 어떤 방향이 맞나요?</p>
+
+<div class="options">
+  <div class="option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>정적 웹앱 + JSON 데이터</h3>
+      <p><strong>구성:</strong> HTML/CSS/JS + skills.json</p>
+      <p><strong>업데이트:</strong> JSON 교체만으로 반영 · GitHub Pages 배포 가능</p>
+      <p><strong>수집:</strong> Python 스크립트가 Claude/ChatGPT 문서 크롤링 → JSON 생성</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>장점</h4><ul><li>서버 불필요 · 배포 즉시</li><li>유지보수 최소</li><li>속도 빠름</li></ul></div>
+        <div class="cons"><h4>단점</h4><ul><li>실시간 업데이트 불가</li><li>즐겨찾기 저장 어려움</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="b" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Notion DB + 임베드 대시보드</h3>
+      <p><strong>구성:</strong> Notion이 마스터 데이터 → 웹 대시보드가 API 읽기</p>
+      <p><strong>업데이트:</strong> Notion에서 직접 추가/수정 → 즉시 반영</p>
+      <p><strong>수집:</strong> 스크립트가 Notion 페이지에 자동 추가</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>장점</h4><ul><li>비개발자도 스킬 추가 가능</li><li>팀 협업 용이</li></ul></div>
+        <div class="cons"><h4>단점</h4><ul><li>Notion API 의존성</li><li>로딩 느릴 수 있음</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="c" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>풀스택 웹앱 (Flask + SQLite + JS)</h3>
+      <p><strong>구성:</strong> 백엔드 API + DB + 프론트엔드</p>
+      <p><strong>업데이트:</strong> 관리자 UI에서 직접 추가/수정/삭제</p>
+      <p><strong>수집:</strong> 크론 잡 자동 크롤링 → DB 저장</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>장점</h4><ul><li>검색·필터·즐겨찾기 등 풍부한 기능</li><li>사용 통계 추적</li><li>확장성 최고</li></ul></div>
+        <div class="cons"><h4>단점</h4><ul><li>개발·운영 비용 높음</li><li>서버 필요</li></ul></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="margin-top:24px; padding:16px; background:rgba(99,102,241,0.08); border-radius:8px; border-left:3px solid #6366f1;">
+  <p class="label">전체 파이프라인 3단계 (공통)</p>
+  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:8px;">
+    <div style="text-align:center; padding:12px; background:rgba(255,255,255,0.05); border-radius:6px;">
+      <p class="label">1단계 · 수집</p>
+      <p style="font-size:13px; margin-top:4px;">Claude Code / ChatGPT / Gemini 공식 문서 + 커뮤니티 크롤링</p>
+    </div>
+    <div style="text-align:center; padding:12px; background:rgba(255,255,255,0.05); border-radius:6px;">
+      <p class="label">2단계 · 대시보드</p>
+      <p style="font-size:13px; margin-top:4px;">카테고리 탐색 · 검색 · 복사 · AI별 필터</p>
+    </div>
+    <div style="text-align:center; padding:12px; background:rgba(255,255,255,0.05); border-radius:6px;">
+      <p class="label">3단계 · 업데이트</p>
+      <p style="font-size:13px; margin-top:4px;">GitHub Actions cron · 변경 감지 · 알림</p>
+    </div>
+  </div>
+</div>
